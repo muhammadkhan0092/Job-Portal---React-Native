@@ -2,9 +2,7 @@ import {Image, StyleSheet, View,Dimensions} from "react-native";
 import {images} from "@/constants/images";
 import {Colors} from "@/constants/theme";
 const { width, height } = Dimensions.get('window');
-
-
-export default function HomeScreen() {
+const splashScreen=()=>{
     return(
         <View style={styles.container}>
             <Image
