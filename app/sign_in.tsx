@@ -4,6 +4,7 @@ import {SafeAreaView} from "react-native-safe-area-context/src/SafeAreaView.web"
 import images from "@/constants/images";
 import {Dimensions, Image, StyleSheet, Text, View} from "react-native";
 import icons from "@/constants/icons";
+import {Colors} from "@/constants/theme";
 const { width, height } = Dimensions.get('window');
 const Sign_in = () => {
     return (
@@ -26,8 +27,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: "column",
-        marginStart:width*0.046,
-        marginEnd:width*0.046,
         backgroundColor:'white'
     },
     image:{
@@ -41,7 +40,9 @@ const styles = StyleSheet.create({
         fontSize:height*0.0171,
         lineHeight:height*0.0309,
         marginTop:height*0.02,
-        color:'#666876'
+        letterSpacing:width*0.01,
+        color:Colors.light.textColorSilver,
+        textTransform:'uppercase'
     },
     textSpanOne:{
         fontSize:height*0.0343,
@@ -50,28 +51,31 @@ const styles = StyleSheet.create({
         fontFamily:'Rubik-SemiBold',
         justifyContent:'center',
         alignSelf:'center',
-        marginTop:12,
-        textAlign:'center'
+        marginTop:height*0.0144,
+        textAlign:'center',
+        marginStart:width*0.046,
+        marginEnd:width*0.046
     },
     textSpanTwo:{
         fontSize:height*0.0343,
         lineHeight:height*0.044,
-        color:'#0061FF',
+        color:Colors.light.darkBlue,
         justifyContent:'center',
-        alignSelf:'center'
+        alignSelf:'center',
     },
     textLogin:{
         fontSize:height*0.019,
         lineHeight:height*0.034,
         fontFamily:'Rubik-Regular',
-        color:'#666876',
+        color:Colors.light.textColorSilver,
         alignSelf:'center',
-        marginTop:12
+        marginTop:height*0.0144
     },
     logoShadow:{
-        width:'100%',
-        backgroundColor:'#f9f9f9',
-        justifyContent:'center',
+        marginStart:width*0.046,
+        marginEnd:width*0.046,
+        width:'90%',
+        backgroundColor:Colors.light.shadowColor,
         padding:5,
         borderRadius:100,
         marginTop:20,
