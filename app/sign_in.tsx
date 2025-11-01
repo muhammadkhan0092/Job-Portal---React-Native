@@ -2,11 +2,14 @@ import {useFonts} from "expo-font";
 import {useEffect} from "react";
 import {SafeAreaView} from "react-native-safe-area-context/src/SafeAreaView.web";
 import images from "@/constants/images";
-import {Dimensions, Image, StyleSheet, Text, View} from "react-native";
+import {Dimensions, Image, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import icons from "@/constants/icons";
 import {Colors} from "@/constants/theme";
 const { width, height } = Dimensions.get('window');
 const Sign_in = () => {
+    const signInHandler = ()=>{
+
+    }
     return (
         <SafeAreaView style={styles.container}>
             <Image source={images.onboarding} style={styles.image}/>
@@ -14,10 +17,10 @@ const Sign_in = () => {
             <Text style={styles.textSpanOne}>Let’s get you closer to <Text style={styles.textSpanTwo}>your ideal home</Text></Text>
             <Text style={styles.textLogin}>Login to Real Scout with Google</Text>
             <View style={styles.logoShadow}>
-                <View style={styles.loginContainer}>
+                <TouchableOpacity onPress={signInHandler} style={styles.loginContainer}>
                     <Image style={styles.google} source={icons.google}/>
                     <Text style={styles.signUpText}>Sign Up with Google</Text>
-                </View>
+                </TouchableOpacity>
             </View>
         </SafeAreaView>
     )
