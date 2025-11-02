@@ -2,13 +2,21 @@ import {useFonts} from "expo-font";
 import {useEffect} from "react";
 import {SafeAreaView} from "react-native-safe-area-context/src/SafeAreaView.web";
 import images from "@/constants/images";
-import {Dimensions, Image, StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import {Alert, Dimensions, Image, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import icons from "@/constants/icons";
 import {Colors} from "@/constants/theme";
+import {login} from "@/lib/appWrite";
 const { width, height } = Dimensions.get('window');
-const Sign_in = () => {
-    const signInHandler = ()=>{
-
+const Sign_in =() => {
+    const signInHandler = async ()=>{
+        const result = await login()
+        if(result){
+            console.log(result)
+        }
+        else
+        {
+            Alert.alert("Error","Failed to login");
+        }
     }
     return (
         <SafeAreaView style={styles.container}>
