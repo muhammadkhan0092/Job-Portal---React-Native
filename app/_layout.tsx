@@ -6,6 +6,7 @@ import 'react-native-reanimated';
 import { useColorScheme } from '@/hooks/use-color-scheme';
 import {useFonts} from "expo-font";
 import {useEffect} from "react";
+import GlobalProvider from "@/lib/global-provider";
 
 export const unstable_settings = {
   anchor: '(tabs)',
@@ -29,12 +30,14 @@ export default function RootLayout() {
     }
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack screenOptions={{headerShown: false}}>
-        <Stack.Screen name="(root)/(tabs)/index" options={{ headerShown: false }} />
-          <Stack.Screen name="(root)/properties/[id]" options={{ headerShown: false }} />
-          <Stack.Screen name="sign_in" options={{ headerShown: false }} />
-      </Stack>
-        <StatusBar hidden={true}/>
+        <GlobalProvider>
+            <Stack screenOptions={{headerShown: false}}>
+                <Stack.Screen name="(root)/(tabs)/index" options={{ headerShown: false }} />
+                <Stack.Screen name="(root)/properties/[id]" options={{ headerShown: false }} />
+                <Stack.Screen name="sign_in" options={{ headerShown: false }} />
+            </Stack>
+            <StatusBar hidden={true}/>
+        </GlobalProvider>
     </ThemeProvider>
   );
 }

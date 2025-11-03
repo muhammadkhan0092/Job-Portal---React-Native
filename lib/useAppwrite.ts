@@ -23,7 +23,7 @@ export const useAppwrite = <T,P extends Record<string, string|number>>(
     const [data,setData] = useState<T|null>(null)
     const [loading, setLoading] = useState<boolean>(false)
     const [error,setError] = useState<string|null>(null)
-    const fetchData =useCallback(
+    const fetchData = useCallback(
         //we are passing the parameter here because otherwise on refetech we will pass the same param which was initially passed
         async (fetchParams:P) => {
             setLoading(true);

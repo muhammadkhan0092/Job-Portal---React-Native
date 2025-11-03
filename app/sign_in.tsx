@@ -6,8 +6,12 @@ import {Alert, Dimensions, Image, StyleSheet, Text, TouchableOpacity, View} from
 import icons from "@/constants/icons";
 import {Colors} from "@/constants/theme";
 import {login} from "@/lib/appWrite";
+import {getContext} from "expo-router/build/rsc/server";
+import {useGlobalContext} from "@/lib/global-provider";
 const { width, height } = Dimensions.get('window');
 const Sign_in =() => {
+    const {user} = useGlobalContext()
+    console.log(user)
     const signInHandler = async ()=>{
         const result = await login()
         if(result){
