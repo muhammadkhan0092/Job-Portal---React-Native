@@ -31,11 +31,7 @@ export default function RootLayout() {
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
         <GlobalProvider>
-            <Stack screenOptions={{headerShown: false}}>
-                <Stack.Screen name="(root)/(tabs)/index" options={{ headerShown: false }} />
-                <Stack.Screen name="(root)/properties/[id]" options={{ headerShown: false }} />
-                <Stack.Screen name="sign_in" options={{ headerShown: false }} />
-            </Stack>
+            <Stack screenOptions={{headerShown: false}}/>
             <StatusBar hidden={true}/>
         </GlobalProvider>
     </ThemeProvider>

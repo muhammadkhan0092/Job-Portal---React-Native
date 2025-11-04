@@ -8,14 +8,17 @@ import {Colors} from "@/constants/theme";
 import {login} from "@/lib/appWrite";
 import {getContext} from "expo-router/build/rsc/server";
 import {useGlobalContext} from "@/lib/global-provider";
+import {Redirect} from "expo-router";
 const { width, height } = Dimensions.get('window');
 const Sign_in =() => {
-    const {user} = useGlobalContext()
-    console.log(user)
+    const {user,refetch,isLoggedIn,loading} = useGlobalContext()
+    if(isLoggedIn){
+        return <Redirect href="/"/>
+    }
     const signInHandler = async ()=>{
         const result = await login()
         if(result){
-            console.log(result)
+            refetch({"":""})
         }
         else
         {
