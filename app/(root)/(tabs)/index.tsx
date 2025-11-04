@@ -13,10 +13,7 @@ export default function HomeScreen() {
                 flexDirection:'column'
             }}
         >
-            <Link href="/explore">Explore</Link>
-            <Link href="/profile">Profile</Link>
-            <Link href="/sign_in">Sign In</Link>
-            <Link href="/properties/1">Properties</Link>
+            <Text>Home</Text>
         </View>
     )
 }
