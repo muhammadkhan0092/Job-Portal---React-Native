@@ -18,7 +18,7 @@ const Sign_in =() => {
     const signInHandler = async ()=>{
         const result = await login()
         if(result){
-            refetch({"":""})
+            //refetch({"":""})
         }
         else
         {

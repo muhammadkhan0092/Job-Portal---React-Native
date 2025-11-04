@@ -5,6 +5,9 @@ import {ActivityIndicator, StyleSheet} from "react-native";
 
 export default function AppLayout(){
     const {user,refetch,isLoggedIn,loading} = useGlobalContext()
+    if(true){
+        return <Slot/>
+    }
     if(loading){
         return <SafeAreaView style={styles.root}>
             <ActivityIndicator/>
