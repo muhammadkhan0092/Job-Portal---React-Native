@@ -5,6 +5,8 @@ import {SafeAreaView} from "react-native-safe-area-context/src/SafeAreaView.web"
 import icons from "@/constants/icons";
 import Search from "@/components/Search";
 import {text} from "node:stream/consumers";
+import RatingsView from "@/components/RatingsView";
+import ApartmentGridComponent from "@/components/ApartmentGridComponent";
 const { width, height } = Dimensions.get('window');
 interface headingProps{
     text: string,
@@ -16,10 +18,7 @@ const FeaturedComponent = ()=>{
             <Text style={styles.featuredPrice}>$12219</Text>
             <Text style={styles.featuredTitle}>Merialla Villa</Text>
             <Text style={styles.featuredLocation}>New York, US</Text>
-            <View style={styles.ratingContainer}>
-                <Image style={styles.ratingStar} source={icons.star}/>
-                <Text style={styles.ratingText}>4.5</Text>
-            </View>
+            <RatingsView ratingContainer={styles.ratingContainer} ratingStar={styles.ratingStar} ratingText={styles.ratingText}/>
             <Image style={styles.heart} source={icons.heart}/>
         </View>
     )
@@ -47,7 +46,7 @@ export default function HomeScreen() {
             </View>
             <Search/>
             <HeadingComponent text="Featured"/>
-            <FeaturedComponent/>
+            <ApartmentGridComponent/>
         </SafeAreaView>
     )
 }
