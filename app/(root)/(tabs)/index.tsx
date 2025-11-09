@@ -7,6 +7,7 @@ import Search from "@/components/Search";
 import {text} from "node:stream/consumers";
 import RatingsView from "@/components/RatingsView";
 import ApartmentGridComponent from "@/components/ApartmentGridComponent";
+import ApartmentSearchComponent from "@/components/ApartmentSearchComponent";
 const { width, height } = Dimensions.get('window');
 interface headingProps{
     text: string,
@@ -45,8 +46,7 @@ export default function HomeScreen() {
                 <Image style={styles.notification} source={icons.bell}/>
             </View>
             <Search/>
-            <HeadingComponent text="Featured"/>
-            <ApartmentGridComponent/>
+            <ApartmentSearchComponent/>
         </SafeAreaView>
     )
 }
