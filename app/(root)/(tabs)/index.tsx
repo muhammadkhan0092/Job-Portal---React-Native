@@ -1,4 +1,4 @@
-import {Image, StyleSheet, View, Dimensions, Text} from "react-native";
+import {Image, StyleSheet, View, Dimensions, Text, TouchableOpacity} from "react-native";
 import {Link} from "expo-router";
 import images from "@/constants/images";
 import {SafeAreaView} from "react-native-safe-area-context/src/SafeAreaView.web";
@@ -8,20 +8,21 @@ import {text} from "node:stream/consumers";
 import RatingsView from "@/components/RatingsView";
 import ApartmentGridComponent from "@/components/ApartmentGridComponent";
 import ApartmentSearchComponent from "@/components/ApartmentSearchComponent";
+import FiltersComponent from "@/components/FiltersComponent";
 const { width, height } = Dimensions.get('window');
 interface headingProps{
     text: string,
 }
-const FeaturedComponent = ()=>{
+const FeaturedComponent = (props:featuredProps)=>{
     return (
-        <View style={styles.featuredContainer}>
-            <View style={styles.featuredImage}/>
-            <Text style={styles.featuredPrice}>$12219</Text>
-            <Text style={styles.featuredTitle}>Merialla Villa</Text>
-            <Text style={styles.featuredLocation}>New York, US</Text>
+        <TouchableOpacity onPress={props.onPress} style={styles.featuredContainer}>
+            <Image source={images.japan} style={styles.featuredImage}/>
+            <Text style={styles.featuredPrice}>{props.price}</Text>
+            <Text style={styles.featuredTitle}>{props.title}</Text>
+            <Text style={styles.featuredLocation}>{props.location}</Text>
             <RatingsView ratingContainer={styles.ratingContainer} ratingStar={styles.ratingStar} ratingText={styles.ratingText}/>
             <Image style={styles.heart} source={icons.heart}/>
-        </View>
+        </TouchableOpacity>
     )
 }
 const HeadingComponent = ({text}:headingProps)=>{
@@ -46,7 +47,14 @@ export default function HomeScreen() {
                 <Image style={styles.notification} source={icons.bell}/>
             </View>
             <Search/>
-            <ApartmentSearchComponent/>
+            <FiltersComponent/>
+            {/*<FeaturedComponent*/}
+            {/*    onPress={()=>{}}*/}
+            {/*    title={""}*/}
+            {/*    location={""}*/}
+            {/*    price={""}*/}
+            {/*/>*/}
+            {/*<ApartmentSearchComponent/>*/}
         </SafeAreaView>
     )
 }
