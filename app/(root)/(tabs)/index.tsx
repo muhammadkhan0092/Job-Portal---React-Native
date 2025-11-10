@@ -1,4 +1,4 @@
-import {Image, StyleSheet, View, Dimensions, Text, TouchableOpacity} from "react-native";
+import {Image, StyleSheet, View, Dimensions, Text, TouchableOpacity, FlatList} from "react-native";
 import {Link} from "expo-router";
 import images from "@/constants/images";
 import {SafeAreaView} from "react-native-safe-area-context/src/SafeAreaView.web";
@@ -38,23 +38,34 @@ export default function HomeScreen() {
         <SafeAreaView
             style={styles.container}
         >
-            <View style={styles.header}>
-                <Image style={styles.profileImage} source={images.avatar}/>
-                <View style={styles.greetingView}>
-                    <Text style={styles.goodMorning}>Good Morning</Text>
-                    <Text>M.Khan Ahmad</Text>
-                </View>
-                <Image style={styles.notification} source={icons.bell}/>
-            </View>
-            <Search/>
-            <FiltersComponent/>
-            {/*<FeaturedComponent*/}
-            {/*    onPress={()=>{}}*/}
-            {/*    title={""}*/}
-            {/*    location={""}*/}
-            {/*    price={""}*/}
-            {/*/>*/}
-            {/*<ApartmentSearchComponent/>*/}
+            <FlatList
+                data={[1,2,3,4]}
+                horizontal={false}
+                numColumns={2}
+                ListHeaderComponent={
+                    ()=>(
+                        <>
+                            <View style={styles.header}>
+                                <Image style={styles.profileImage} source={images.avatar}/>
+                                <View style={styles.greetingView}>
+                                    <Text style={styles.goodMorning}>Good Morning</Text>
+                                    <Text>M.Khan Ahmad</Text>
+                                </View>
+                                <Image style={styles.notification} source={icons.bell}/>
+                            </View>
+                            <Search/>
+                            <HeadingComponent text={"Featured"}/>
+                            <FeaturedComponent title={"Apartment Squares"} location={"Los Angeles"} price={"$59210"}/>
+                            <HeadingComponent text={"Recommendations"}/>
+                        </>
+                    )
+                }
+                columnWrapperStyle={{ gap: 16 }}
+                ItemSeparatorComponent={()=>(<View style={{height:20}}/>)}
+                renderItem={(item)=>(
+                    <ApartmentGridComponent/>
+                )}
+            />
         </SafeAreaView>
     )
 }
@@ -66,7 +77,6 @@ const styles = StyleSheet.create({
         paddingStart:20,
         paddingEnd:20,
         paddingTop:16,
-        paddingBottom:36,
         backgroundColor:'white'
     },
     header:{
@@ -102,7 +112,8 @@ const styles = StyleSheet.create({
     headingContainer:{
         width:'100%',
         flexDirection:'row',
-        alignItems:"center"
+        alignItems:"center",
+        marginTop:32
     },
     headingText:{
         flex:1,
@@ -116,71 +127,71 @@ const styles = StyleSheet.create({
         color:'#8B5DFF'
     },
     featuredContainer:{
-        width:250,
-        height:340,
+        width:width*0.57,
+        height:height*0.36,
         borderRadius:24,
         position:'relative'
     },
     featuredImage:{
-        width:250,
-        height:340,
+        width:width*0.57,
+        height:height*0.36,
         borderRadius:24,
         resizeMode:'cover',
         backgroundColor:'red'
     },
     featuredPrice:{
-        bottom:20,
-        start:16,
+        bottom:height*0.021,
+        start:width*0.03,
         position:'absolute',
         fontFamily:'Rubik-Bold',
-        fontSize:20,
+        fontSize:height*0.021,
         color:'white'
     },
     featuredTitle:{
-        bottom:86,
-        start:16,
+        bottom:height*0.09,
+        start:width*0.03,
         position:'absolute',
         fontFamily:'Rubik-Bold',
-        fontSize:20,
+        fontSize:height*0.021,
         color:'white'
     },
     featuredLocation:{
-        bottom:54,
-        start:16,
+        bottom:height*0.057,
+        start:width*0.03,
         position:'absolute',
         fontFamily:'Rubik-Regular',
-        fontSize:16,
+        fontSize:height*0.017,
         color:'white'
     },
     ratingContainer:{
         flexDirection:'row',
         position:'absolute',
-        end:24,
-        top:24,
+        end:width*0.05,
+        top:height*0.02,
         borderWidth:1,
         borderColor:'#04060F1F',
         backgroundColor:'white',
         borderRadius:100,
         alignItems:'center',
-        paddingVertical:5.5,
-        paddingHorizontal:10
+        paddingVertical:height*0.005,
+        paddingHorizontal:width*0.023
     },
     ratingText:{
-        fontSize:12,
-        lineHeight:15,
+        fontSize:height*0.012,
+        lineHeight:height*0.018,
         color:'#246BFD',
         fontFamily:'Rubik-SemiBold',
     },
     ratingStar:{
-        width:11,
-        height:11,
+        width:height*0.011,
+        height:height*0.011,
         resizeMode:'cover'
     },
     heart:{
         position:'absolute',
-        end:16,
-        bottom:20,
-        width:22,
-        height:22
+        end:width*0.037,
+        bottom:height*0.025,
+        width:width*0.050,
+        height:height*0.023
     }
 });

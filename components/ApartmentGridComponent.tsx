@@ -1,8 +1,8 @@
-import {Image, StyleSheet, Text, View} from "react-native";
+import {Dimensions, Image, StyleSheet, Text, View} from "react-native";
 import icons from "@/constants/icons";
 import RatingsView from "@/components/RatingsView";
 import images from "@/constants/images";
-
+const { width, height } = Dimensions.get('window');
 const ApartmentGridComponent = ()=>(
     <View style={styles.container}>
         <View style={styles.imageContainer}>
@@ -21,10 +21,9 @@ export default ApartmentGridComponent;
 const styles = StyleSheet.create({
     container:{
         flexDirection:'column',
-        paddingTop:16,
-        paddingBottom:20,
-        paddingStart:14,
-        paddingEnd:14,
+        paddingTop:height*0.017,
+        paddingBottom:height*0.02,
+        paddingHorizontal:width*0.032,
         backgroundColor:'white',
         borderRadius:12,
         borderWidth:0.1,
@@ -39,15 +38,15 @@ const styles = StyleSheet.create({
         borderColor:'gray'
     },
     imageContainer:{
-        width:159,
-        height:154,
+        width:width*0.368,
+        height:height*0.165,
         borderRadius:10,
         position:'relative',
         backgroundColor:'blue'
     },
     image:{
-        width:159,
-        height:154,
+        width:width*0.368,
+        height:height*0.165,
         borderRadius:10,
     },
     ratingContainer:{

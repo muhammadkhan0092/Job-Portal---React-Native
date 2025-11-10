@@ -23,7 +23,7 @@ export default function FiltersComponent(){
         <ScrollView style={styles.filterContainerStyle} showsHorizontalScrollIndicator={false} horizontal={true} contentContainerStyle={{gap:12}} >
             {
                 categories.map((item,index)=>(
-                    <TouchableOpacity onPress={()=>handleCategory(item.category)}
+                    <TouchableOpacity key={item.category || index}  onPress={()=>handleCategory(item.category)}
                         style={[styles.scrollItemStyle,item.category===selectedCategory?styles.selectedColor:styles.unselectedColor]}>
                         <Text style={[styles.textStyle,item.category===selectedCategory?styles.selectedText:styles.unselectedText]}>{item.category}</Text>
                     </TouchableOpacity>
