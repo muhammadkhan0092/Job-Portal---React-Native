@@ -6,7 +6,7 @@ const { width, height } = Dimensions.get('window');
 const ApartmentGridComponent = ()=>(
     <View style={styles.container}>
         <View style={styles.imageContainer}>
-            <Image style={styles.image}/>
+            <Image source={images.japan} style={styles.image}/>
             <RatingsView ratingContainer={styles.ratingContainer} ratingStar={styles.ratingStar} ratingText={styles.ratingText} />
         </View>
         <Text style={styles.title}>La Grand Maison</Text>
@@ -42,7 +42,6 @@ const styles = StyleSheet.create({
         height:height*0.165,
         borderRadius:10,
         position:'relative',
-        backgroundColor:'blue'
     },
     image:{
         width:width*0.368,

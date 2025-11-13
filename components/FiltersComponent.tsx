@@ -1,8 +1,8 @@
-import {ScrollView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import {Dimensions, ScrollView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {router, useLocalSearchParams} from "expo-router";
 import {useState} from "react";
 import {categories} from "@/constants/data";
-
+const {width,height} = Dimensions.get("window");
 export default function FiltersComponent(){
     const params = useLocalSearchParams<{filter?:string}>();
     const [selectedCategory,setSelectedCategory] = useState(params.filter || 'All');
@@ -34,10 +34,10 @@ export default function FiltersComponent(){
 }
 const styles = StyleSheet.create({
     filterContainerStyle:{
-        marginTop:30,
+        marginTop:height*0.02,
     },
     scrollItemStyle:{
-        paddingVertical:8,
+        paddingVertical:height*0.008,
         paddingHorizontal:20,
         alignSelf:'flex-start',
         borderRadius:30

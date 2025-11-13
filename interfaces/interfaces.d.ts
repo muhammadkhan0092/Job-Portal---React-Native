@@ -7,5 +7,6 @@ interface featuredProps{
     onPress?:()=>void;
     title:string,
     location:string,
-    price:string
+    price:string,
+    img:any
 }

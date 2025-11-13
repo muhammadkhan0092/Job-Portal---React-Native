@@ -1,5 +1,5 @@
 import {Image, StyleSheet, View, Dimensions, Text, TouchableOpacity, FlatList} from "react-native";
-import {Link} from "expo-router";
+import {Link, Tabs} from "expo-router";
 import images from "@/constants/images";
 import {SafeAreaView} from "react-native-safe-area-context/src/SafeAreaView.web";
 import icons from "@/constants/icons";
@@ -16,7 +16,7 @@ interface headingProps{
 const FeaturedComponent = (props:featuredProps)=>{
     return (
         <TouchableOpacity onPress={props.onPress} style={styles.featuredContainer}>
-            <Image source={images.japan} style={styles.featuredImage}/>
+            <Image source={props.img} style={styles.featuredImage}/>
             <Text style={styles.featuredPrice}>{props.price}</Text>
             <Text style={styles.featuredTitle}>{props.title}</Text>
             <Text style={styles.featuredLocation}>{props.location}</Text>
@@ -34,12 +34,29 @@ const HeadingComponent = ({text}:headingProps)=>{
     )
 }
 export default function HomeScreen() {
+    const gridItems = [
+        {
+            title: "Home",
+            location:"Los Angeles",
+            price:"500$",
+            img:images.japan
+        },
+        {
+            title: "Apartment",
+            location:"New York",
+            price:"530$",
+            img:images.newYork
+        }
+    ]
+
     return(
-        <SafeAreaView
+        <View
             style={styles.container}
         >
             <FlatList
+                style={{flex: 1}}
                 data={[1,2,3,4]}
+                showsVerticalScrollIndicator={false}
                 horizontal={false}
                 numColumns={2}
                 ListHeaderComponent={
@@ -55,18 +72,34 @@ export default function HomeScreen() {
                             </View>
                             <Search/>
                             <HeadingComponent text={"Featured"}/>
-                            <FeaturedComponent title={"Apartment Squares"} location={"Los Angeles"} price={"$59210"}/>
-                            <HeadingComponent text={"Recommendations"}/>
+                            <FlatList
+                                data={gridItems}
+                                horizontal={true}
+                                showsHorizontalScrollIndicator={false}
+                                ItemSeparatorComponent={
+                                ()=>(
+                                    <View style={{width:width*0.04}}/>
+                                )
+                            }
+                                renderItem={
+                                ({item})=>(
+                                    <FeaturedComponent title={item.title} location={item.location} price={item.price} img={item.img}/>
+                                )}
+                            />
+                            <HeadingComponent text={"Our Recommendations"}/>
+                            <FiltersComponent/>
                         </>
                     )
                 }
-                columnWrapperStyle={{ gap: 16 }}
-                ItemSeparatorComponent={()=>(<View style={{height:20}}/>)}
-                renderItem={(item)=>(
+                columnWrapperStyle={{ gap: 16 ,marginTop:height*0.02}}
+                ItemSeparatorComponent={()=>(
+                    <View style={{height:20}}/>
+                )}
+                renderItem={({item})=>(
                     <ApartmentGridComponent/>
                 )}
             />
-        </SafeAreaView>
+        </View>
     )
 }
 
@@ -74,16 +107,15 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: "column",
-        paddingStart:20,
-        paddingEnd:20,
-        paddingTop:16,
+        paddingHorizontal:width*0.04,
+        paddingTop:height*0.064,
         backgroundColor:'white'
     },
     header:{
         width:'100%',
         flexDirection:'row',
         alignItems:"center",
-        marginBottom:24
+        marginBottom:height*0.02
     },
     greetingView:{
         flexDirection:'column',
@@ -113,7 +145,7 @@ const styles = StyleSheet.create({
         width:'100%',
         flexDirection:'row',
         alignItems:"center",
-        marginTop:32
+        marginTop:height*0.02
     },
     headingText:{
         flex:1,
@@ -129,6 +161,7 @@ const styles = StyleSheet.create({
     featuredContainer:{
         width:width*0.57,
         height:height*0.36,
+        marginTop:height*0.02,
         borderRadius:24,
         position:'relative'
     },
@@ -137,7 +170,6 @@ const styles = StyleSheet.create({
         height:height*0.36,
         borderRadius:24,
         resizeMode:'cover',
-        backgroundColor:'red'
     },
     featuredPrice:{
         bottom:height*0.021,

@@ -1,9 +1,10 @@
 import {router, useLocalSearchParams, usePathname} from "expo-router";
 import {useCallback, useState} from "react";
-import {Image, StyleSheet, Text, TextInput, View} from "react-native";
+import {Dimensions, Image, StyleSheet, Text, TextInput, View} from "react-native";
 import images from "@/constants/images";
 import icons from "@/constants/icons";
 import {useDebouncedCallback} from "use-debounce";
+const {width,height} = Dimensions.get('window')
 
 const Search = ()=>{
     const path = usePathname();
@@ -21,7 +22,7 @@ const Search = ()=>{
     return (
         <View style={styles.container}>
             <Image style={styles.icon} source={icons.search}/>
-            <TextInput placeholderTextColor={"#8C8E98"} value={search}  onChangeText={handleSearch} style={styles.text}/>
+            <TextInput  placeholderTextColor={"black"} value={search}  onChangeText={handleSearch} style={styles.text}/>
             <Image style={styles.icon} source={icons.filter}/>
         </View>
     )
@@ -30,23 +31,23 @@ export default Search;
 const styles = StyleSheet.create({
     container:{
         width:'100%',
-        height:52,
+        height:height*0.055,
         backgroundColor:'#FBFBFD',
         borderColor:'#8B5DFF0A',
         borderRadius:10,
-        padding:16,
+        paddingHorizontal:height*0.017,
         flexDirection:'row',
         alignItems:'center'
     },
     icon:{
-        width:20,
-        height:20,
+        width:height*0.02,
+        height:height*0.02,
     },
     text:{
-        fontSize:14,
+        fontSize:height*0.015,
+        lineHeight:height*0.017,
         flex:1,
-        lineHeight:17,
-        color:'#8C8E98',
+        color:'black',
         fontFamily:'Rubik-Regular'
     }
 })
