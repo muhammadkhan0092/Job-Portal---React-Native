@@ -1,12 +1,13 @@
-import {Image, StyleSheet, Text, View} from "react-native";
-import icons from "@/constants/icons";
 import RatingsView from "@/components/RatingsView";
+import icons from "@/constants/icons";
+import images from "@/constants/images";
+import { Image, StyleSheet, Text, View } from "react-native";
 
 const ApartmentSearchComponent = ()=>{
     return (
         <View style={styles.rootContainerStyle}>
             <View style={styles.imageContainerStyle}>
-                <Image style={styles.image}/>
+                <Image style={styles.image} source={images.japan}/>
                 <RatingsView ratingContainer={styles.ratingContainer} ratingStar={styles.ratingStar} ratingText={styles.ratingText}/>
             </View>
             <View style={styles.contentContainerStyle}>
@@ -43,8 +44,7 @@ const styles = StyleSheet.create({
         position:'relative',
         width:100,
         height:100,
-        borderRadius:10,
-        backgroundColor:'red'
+        borderRadius:10
     },
     image:{
         width:100,

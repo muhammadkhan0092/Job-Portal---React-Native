@@ -1,7 +1,7 @@
-import {Dimensions, ScrollView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
-import {router, useLocalSearchParams} from "expo-router";
-import {useState} from "react";
-import {categories} from "@/constants/data";
+import { categories } from "@/constants/data";
+import { router, useLocalSearchParams } from "expo-router";
+import { useState } from "react";
+import { Dimensions, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 const {width,height} = Dimensions.get("window");
 export default function FiltersComponent(){
     const params = useLocalSearchParams<{filter?:string}>();
@@ -20,6 +20,7 @@ export default function FiltersComponent(){
         }
     }
     return (
+        <View style={styles.filterContainerStyle} >
         <ScrollView style={styles.filterContainerStyle} showsHorizontalScrollIndicator={false} horizontal={true} contentContainerStyle={{gap:12}} >
             {
                 categories.map((item,index)=>(
@@ -30,11 +31,12 @@ export default function FiltersComponent(){
                 ))
             }
         </ScrollView>
+        </View>
     )
 }
 const styles = StyleSheet.create({
     filterContainerStyle:{
-        marginTop:height*0.02,
+        marginTop:height*0.02
     },
     scrollItemStyle:{
         paddingVertical:height*0.008,
