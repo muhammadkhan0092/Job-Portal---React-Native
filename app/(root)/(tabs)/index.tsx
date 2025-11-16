@@ -1,14 +1,12 @@
-import {Image, StyleSheet, View, Dimensions, Text, TouchableOpacity, FlatList} from "react-native";
-import {Link, Tabs} from "expo-router";
-import images from "@/constants/images";
-import {SafeAreaView} from "react-native-safe-area-context/src/SafeAreaView.web";
-import icons from "@/constants/icons";
-import Search from "@/components/Search";
-import {text} from "node:stream/consumers";
-import RatingsView from "@/components/RatingsView";
 import ApartmentGridComponent from "@/components/ApartmentGridComponent";
-import ApartmentSearchComponent from "@/components/ApartmentSearchComponent";
 import FiltersComponent from "@/components/FiltersComponent";
+import RatingsView from "@/components/RatingsView";
+import Search from "@/components/Search";
+import icons from "@/constants/icons";
+import images from "@/constants/images";
+import { useGlobalContext } from "@/lib/global-provider";
+import seed from "@/lib/seed";
+import { Dimensions, FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 const { width, height } = Dimensions.get('window');
 interface headingProps{
     text: string,
@@ -34,6 +32,7 @@ const HeadingComponent = ({text}:headingProps)=>{
     )
 }
 export default function HomeScreen() {
+    seed();
     const gridItems = [
         {
             title: "Home",
@@ -47,8 +46,8 @@ export default function HomeScreen() {
             price:"530$",
             img:images.newYork
         }
-    ]
-
+    ];
+    const {user} = useGlobalContext();
     return(
         <View
             style={styles.container}
@@ -58,15 +57,16 @@ export default function HomeScreen() {
                 data={[1,2,3,4]}
                 showsVerticalScrollIndicator={false}
                 horizontal={false}
+                bounces={false}
                 numColumns={2}
                 ListHeaderComponent={
                     ()=>(
                         <>
                             <View style={styles.header}>
-                                <Image style={styles.profileImage} source={images.avatar}/>
+                                <Image style={styles.profileImage} source={{uri:user?.avatar}}/>
                                 <View style={styles.greetingView}>
                                     <Text style={styles.goodMorning}>Good Morning</Text>
-                                    <Text>M.Khan Ahmad</Text>
+                                    <Text>{user?.name}</Text>
                                 </View>
                                 <Image style={styles.notification} source={icons.bell}/>
                             </View>

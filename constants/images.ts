@@ -1,11 +1,20 @@
+// @ts-ignore
 import onboarding from "@/assets/images/onboarding.png";
+// @ts-ignore
 import avatar from "@/assets/images/avatar.png";
+// @ts-ignore
 import newYork from "@/assets/images/new-york.png";
+// @ts-ignore
 import japan from "@/assets/images/japan.png";
+// @ts-ignore
 import cardGradient from "@/assets/images/card-gradient.png";
+// @ts-ignore
 import barChart from "@/assets/images/bar-chart.png";
+// @ts-ignore
 import whiteGradient from "@/assets/images/white-gradient.png";
-import map from "@/assets/images/map.png";
+// @ts-ignore
+import map from '@/assets/images/map.png';
+// @ts-ignore
 import noResult from "@/assets/images/no-result.png";
 
 export default {

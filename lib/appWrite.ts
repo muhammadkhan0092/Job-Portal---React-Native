@@ -1,28 +1,24 @@
-import {
-    Client,
-    Account,
-    ID,
-    Databases,
-    OAuthProvider,
-    Avatars,
-    Query,
-    Storage,
-} from "react-native-appwrite";
 import * as Linking from "expo-linking";
 import { openAuthSessionAsync } from "expo-web-browser";
+import {
+    Account,
+    Avatars,
+    Client,
+    Databases,
+    OAuthProvider,
+    Storage,
+    TablesDB
+} from "react-native-appwrite";
 
 export const config = {
     platform: "com.jsm.restate",
     endpoint: process.env.EXPO_PUBLIC_APPWRITE_ENDPOINT,
     projectId: process.env.EXPO_PUBLIC_APPWRITE_PROJECT_ID,
-    databaseId: process.env.EXPO_PUBLIC_APPWRITE_DATABASE_ID,
-    galleriesCollectionId:
-    process.env.EXPO_PUBLIC_APPWRITE_GALLERIES_COLLECTION_ID,
-    reviewsCollectionId: process.env.EXPO_PUBLIC_APPWRITE_REVIEWS_COLLECTION_ID,
-    agentsCollectionId: process.env.EXPO_PUBLIC_APPWRITE_AGENTS_COLLECTION_ID,
-    propertiesCollectionId:
-    process.env.EXPO_PUBLIC_APPWRITE_PROPERTIES_COLLECTION_ID,
-    bucketId: process.env.EXPO_PUBLIC_APPWRITE_BUCKET_ID,
+    databaseId: process.env.EXPO_PUBLIC_APPWRITE_DB_ID,
+    galleryId:process.env.EXPO_PUBLIC_GALLERY_ID,
+    reviewId:process.env.EXPO_PUBLIC_REVIEW_ID,
+    agentsId:process.env.EXPO_PUBLIC_AGENTS_ID,
+    propertyId:process.env.EXPO_PUBLIC_PROPERTIES
 };
 
 export const client = new Client();
@@ -34,8 +30,25 @@ client
 export const avatar = new Avatars(client);
 export const account = new Account(client);
 export const databases = new Databases(client);
+export const tablesDb = new TablesDB(client);
 export const storage = new Storage(client);
+export async function name() {
+    try{
+      await tablesDb.createRow({
+        databaseId: "config.databaseId!",
+        tableId: "config.propertyId!",
+        rowId:"",
+        data: {
+            title: "My Property",
+            price: 2000
+        }
+    });
 
+    }
+    catch(e:any){
+
+    }
+}
 export async function login() {
     try {
         const redirectUri = Linking.createURL("/");
@@ -67,7 +80,6 @@ export async function login() {
         return false;
     }
 }
-
 export async function logout() {
     try {
         const result = await account.deleteSession("current");
@@ -77,7 +89,6 @@ export async function logout() {
         return false;
     }
 }
-
 export async function getCurrentUser() {
     try {
         const result = await account.get();
