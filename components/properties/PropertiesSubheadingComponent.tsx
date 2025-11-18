@@ -2,7 +2,7 @@ import { StyleSheet, Text } from "react-native";
 
 const PropertiesSubheadingComponent = ({text}:{text:string})=>(
     <>
-    <Text style={styles.headingStyle}></Text>
+    <Text style={styles.headingStyle}>{text}</Text>
     </>
 );
 export default PropertiesSubheadingComponent;

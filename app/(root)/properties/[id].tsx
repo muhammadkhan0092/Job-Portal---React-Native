@@ -1,16 +1,36 @@
-import {Text, View} from "react-native";
-import {useLocalSearchParams} from "expo-router";
+import FacilitiesComponent from "@/components/FacilitiesComponent";
+import PropertiesAgentComponent from "@/components/properties/PropertiesAgentComponent";
+import PropertiesHeaderImage from "@/components/properties/PropertiesHeaderImage";
+import PropertiesHeaderIntro from "@/components/properties/PropertiesHeaderIntro";
+import PropertiesOverviewComponent from "@/components/properties/PropertiesOverviewComponent";
+import { useLocalSearchParams } from "expo-router";
+import { StyleSheet, View } from "react-native";
 
 const Property = ()=>{
     const {id} = useLocalSearchParams()
+    console.log('in props')
     return (
-        <View style={{
-            flex: 1,
-            justifyContent:'center',
-            alignItems:'center'
-        }}>
-            <Text>Property is {id}</Text>
+        <View style={styles.root}>
+            <PropertiesHeaderImage/>
+             <View style={styles.paddedContainer}>
+                 <PropertiesHeaderIntro/>
+            <PropertiesAgentComponent text="Agent"/>
+            <PropertiesOverviewComponent text="Overview"/>
+            <FacilitiesComponent/>
+            </View>
         </View>
     )
 }
+const styles = StyleSheet.create({
+    root:{
+        flex:1,
+        flexDirection:'column'
+    },
+    paddedContainer:{
+        flex:1,
+        flexDirection:'column',
+        paddingStart:20,
+        paddingEnd:20
+    }
+});
 export default Property;

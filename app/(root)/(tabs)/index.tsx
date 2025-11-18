@@ -1,12 +1,8 @@
-import ApartmentGridComponent from "@/components/ApartmentGridComponent";
-import FiltersComponent from "@/components/FiltersComponent";
 import RatingsView from "@/components/RatingsView";
-import Search from "@/components/Search";
 import icons from "@/constants/icons";
-import images from "@/constants/images";
-import { useGlobalContext } from "@/lib/global-provider";
-import seed from "@/lib/seed";
-import { Dimensions, FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { router } from "expo-router";
+import { useEffect } from "react";
+import { Dimensions, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 const { width, height } = Dimensions.get('window');
 interface headingProps{
     text: string,
@@ -31,77 +27,82 @@ const HeadingComponent = ({text}:headingProps)=>{
         </View>
     )
 }
-export default function HomeScreen() {
-    seed();
-    const gridItems = [
-        {
-            title: "Home",
-            location:"Los Angeles",
-            price:"500$",
-            img:images.japan
-        },
-        {
-            title: "Apartment",
-            location:"New York",
-            price:"530$",
-            img:images.newYork
-        }
-    ];
-    const {user} = useGlobalContext();
-    return(
-        <View
-            style={styles.container}
-        >
-            <FlatList
-                style={{flex: 1}}
-                data={[1,2,3,4]}
-                showsVerticalScrollIndicator={false}
-                horizontal={false}
-                bounces={false}
-                numColumns={2}
-                ListHeaderComponent={
-                    ()=>(
-                        <>
-                            <View style={styles.header}>
-                                <Image style={styles.profileImage} source={{uri:user?.avatar}}/>
-                                <View style={styles.greetingView}>
-                                    <Text style={styles.goodMorning}>Good Morning</Text>
-                                    <Text>{user?.name}</Text>
-                                </View>
-                                <Image style={styles.notification} source={icons.bell}/>
-                            </View>
-                            <Search/>
-                            <HeadingComponent text={"Featured"}/>
-                            <FlatList
-                                data={gridItems}
-                                horizontal={true}
-                                showsHorizontalScrollIndicator={false}
-                                ItemSeparatorComponent={
-                                ()=>(
-                                    <View style={{width:width*0.04}}/>
-                                )
-                            }
-                                renderItem={
-                                ({item})=>(
-                                    <FeaturedComponent title={item.title} location={item.location} price={item.price} img={item.img}/>
-                                )}
-                            />
-                            <HeadingComponent text={"Our Recommendations"}/>
-                            <FiltersComponent/>
-                        </>
-                    )
-                }
-                columnWrapperStyle={{ gap: 16 ,marginTop:height*0.02}}
-                ItemSeparatorComponent={()=>(
-                    <View style={{height:20}}/>
-                )}
-                renderItem={({item})=>(
-                    <ApartmentGridComponent/>
-                )}
-            />
-        </View>
-    )
+export default function HomeScreen(){
+    useEffect(() => {
+    router.push('/properties/1');
+  }, []);
+
+  return <View style={{ backgroundColor:'red' }} />;
 }
+    //seed();
+    // const gridItems = [
+    //     {
+    //         title: "Home",
+    //         location:"Los Angeles",
+    //         price:"500$",
+    //         img:images.japan
+    //     },
+    //     {
+    //         title: "Apartment",
+    //         location:"New York",
+    //         price:"530$",
+    //         img:images.newYork
+    //     }
+    // ];
+    // const {user} = useGlobalContext();
+    // return(
+    //     <View
+    //         style={styles.container}
+    //     >
+    //         <FlatList
+    //             style={{flex: 1}}
+    //             data={[1,2,3,4]}
+    //             showsVerticalScrollIndicator={false}
+    //             horizontal={false}
+    //             bounces={false}
+    //             numColumns={2}
+    //             ListHeaderComponent={
+    //                 ()=>(
+    //                     <>
+    //                         <View style={styles.header}>
+    //                             <Image style={styles.profileImage} source={{uri:user?.avatar}}/>
+    //                             <View style={styles.greetingView}>
+    //                                 <Text style={styles.goodMorning}>Good Morning</Text>
+    //                                 <Text>{user?.name}</Text>
+    //                             </View>
+    //                             <Image style={styles.notification} source={icons.bell}/>
+    //                         </View>
+    //                         <Search/>
+    //                         <HeadingComponent text={"Featured"}/>
+    //                         <FlatList
+    //                             data={gridItems}
+    //                             horizontal={true}
+    //                             showsHorizontalScrollIndicator={false}
+    //                             ItemSeparatorComponent={
+    //                             ()=>(
+    //                                 <View style={{width:width*0.04}}/>
+    //                             )
+    //                         }
+    //                             renderItem={
+    //                             ({item})=>(
+    //                                 <FeaturedComponent title={item.title} location={item.location} price={item.price} img={item.img}/>
+    //                             )}
+    //                         />
+    //                         <HeadingComponent text={"Our Recommendations"}/>
+    //                         <FiltersComponent/>
+    //                     </>
+    //                 )
+    //             }
+    //             columnWrapperStyle={{ gap: 16 ,marginTop:height*0.02}}
+    //             ItemSeparatorComponent={()=>(
+    //                 <View style={{height:20}}/>
+    //             )}
+    //             renderItem={({item})=>(
+    //                 <ApartmentGridComponent/>
+    //             )}
+    //         />
+    //     </View>
+    // )
 
 const styles = StyleSheet.create({
     container: {

@@ -1,4 +1,5 @@
 import icons from "@/constants/icons";
+import images from "@/constants/images";
 import { Image, StyleSheet, Text, View } from "react-native";
 import PropertiesSubheadingComponent from "./PropertiesSubheadingComponent";
 
@@ -6,7 +7,7 @@ const PropertiesAgentComponent = ({text}:{text:string})=>(
     <>
     <PropertiesSubheadingComponent text={text}/>
     <View style={styles.rootStyle}>
-        <Image style={styles.image}/>
+        <Image source={images.avatar} style={styles.image}/>
         <View style={styles.relativeLayout}>
             <Text style={styles.textOne}>Muhammad Khan</Text>
             <Text style={styles.textTwo}>Owner</Text>
@@ -44,13 +45,17 @@ const styles = StyleSheet.create({
     },
     imageOne:{
         top:16,
-        bottom:48,
+        end:48,
+        width:28,
+        height:28,
         position:'absolute'
     },
     imageTwo:{
         top:16,
         end:0,
-        position:'absolute'
+        position:'absolute',
+        width:28,
+        height:28,
     }
 
 })
