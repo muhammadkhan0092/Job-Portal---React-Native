@@ -2,6 +2,7 @@ import FacilitiesComponent from "@/components/FacilitiesComponent";
 import PropertiesAgentComponent from "@/components/properties/PropertiesAgentComponent";
 import PropertiesHeaderImage from "@/components/properties/PropertiesHeaderImage";
 import PropertiesHeaderIntro from "@/components/properties/PropertiesHeaderIntro";
+import PropertiesHighlightComponent from "@/components/properties/PropertiesHighlightComponent";
 import PropertiesOverviewComponent from "@/components/properties/PropertiesOverviewComponent";
 import { useLocalSearchParams } from "expo-router";
 import { StyleSheet, View } from "react-native";
@@ -13,6 +14,7 @@ const Property = ()=>{
         <View style={styles.root}>
             <PropertiesHeaderImage/>
              <View style={styles.paddedContainer}>
+                <PropertiesHighlightComponent/>
                  <PropertiesHeaderIntro/>
             <PropertiesAgentComponent text="Agent"/>
             <PropertiesOverviewComponent text="Overview"/>
