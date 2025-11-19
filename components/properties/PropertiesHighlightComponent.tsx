@@ -13,7 +13,7 @@ const PropertiesHighlightComponent = ()=>(
         <PropsDetailComponent/>
         <View style={{width:24}}/>
         <PropsDetailComponent/>
-         <View style={{width:24}}/>
+        <View style={{width:24}}/>
         <PropsDetailComponent/>
     </View>
     </>
