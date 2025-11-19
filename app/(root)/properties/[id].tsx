@@ -1,7 +1,7 @@
+import PropertiesActionComponent from "@/components/properties/PropertiesActionComponent";
 import PropertiesHeaderImage from "@/components/properties/PropertiesHeaderImage";
 import PropertiesHeaderIntro from "@/components/properties/PropertiesHeaderIntro";
 import PropertiesHighlightComponent from "@/components/properties/PropertiesHighlightComponent";
-import PropertiesReviewComponent from "@/components/properties/PropertiesReviewComponent";
 import { useLocalSearchParams } from "expo-router";
 import { ScrollView, StyleSheet, View } from "react-native";
 
@@ -14,7 +14,7 @@ const Property = ()=>{
              <View style={styles.paddedContainer}>
                 <PropertiesHighlightComponent/>
                  <PropertiesHeaderIntro/>
-            <PropertiesReviewComponent/>
+                 <PropertiesActionComponent/>
             </View>
         </ScrollView>
     )
